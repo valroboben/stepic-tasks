@@ -1,6 +1,4 @@
-my_projects
-
-    using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +8,126 @@ namespace Debut
 {
     class Program
     {
-        ass
+        // a-b-c дд.мм.гг рождени€     d-e-f дд.мм.гг текущий »Ћ» смерти       dnei всегда изначально == 0
+        static int superZiklMensheIliRavno(int one, int two, int three, int four, int five, int six, int itog, int dnei, int konstanta)
+        {
+            for (int i = two + 1; i <= konstanta; i++)
+            {
+                Console.WriteLine("superZiklMensheIliRavno мес€цы первого неполного года ≈—Ћ» √ќƒ –ќ∆≈Ќ»я Ќ≈ “≈ ”ў»… или Ќ≈ –ј¬≈Ќ √ќƒ” —ћ≈–“», i = " + i + " sum перед началом этой операции = " + itog);
+                if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { itog += 31; Console.Write(" после sum = " + itog); continue; }
+                if (i == 4 || i == 6 || i == 9 || i == 11) { itog += 30; Console.Write(" после sum = " + itog); continue; }
+                if (i == 2 && three % 4 == 0) { itog += 29; Console.WriteLine(" после sum = " + itog); continue; }
+                if (i == 2) { itog += 28; Console.Write(" после sum = " + itog); }
+            }
+            return itog;
+        }   // посчитали все мес€цы первого неполного года ≈—Ћ» √ќƒ –ќ∆≈Ќ»я Ќ≈ “≈ ”ў»… или Ќ≈ –ј¬≈Ќ √ќƒ” —ћ≈–“»
+
+        static int superZiklMenshe(int one, int two, int three, int four, int five, int six, int itog, int dnei, int konstanta)
+        {
+            for (int i = two + 1; i < five; i++)
+            {
+                Console.WriteLine("superZiklMenshe мес€цы неполного года ≈—Ћ» √ќƒ –ќ∆≈Ќ»я “≈ ”ў»… или –ј¬≈Ќ √ќƒ” —ћ≈–“», i = " + i + " sum перед началом этой операции = " + itog);
+                if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { itog += 31; continue; }
+                if (i == 4 || i == 6 || i == 9 || i == 11) { itog += 30; continue; }
+                if (i == 2 && two % 4 == 0) { itog += 29; continue; }
+                if (i == 2) { itog += 28; }
+            }
+            return itog;
+        }   // посчитали все мес€цы неполного года ≈—Ћ» √ќƒ –ќ∆≈Ќ»я “≈ ”ў»… или –ј¬≈Ќ √ќƒ” —ћ≈–“»
+
+        static int ziklDniPervie(int one, int two, int three, int four, int five, int six, int itog, int dnei, int konstanta)
+        {
+            if (two == 1 || two == 3 || two == 5 || two == 7 || two == 8 || two == 10 || two == 12) { konstanta = 31; }
+            if (two == 4 || two == 6 || two == 9 || two == 11) { konstanta = 30; }
+            if (two == 2) { konstanta = 28; }
+            if (two == 2 && three % 4 == 0) { konstanta = 29; }
+            if (two == five && three == six) { konstanta = four; }
+
+            for (int i = one; i <= konstanta; i++)
+            { itog++; Console.WriteLine("daysFirstOrOnly дни первого Ќ≈ѕќЋЌќ√ќ мес€ца жизни Ћ»Ѕќ ≈ƒ»Ќ—“¬≈ЌЌќ√ќ ¬ ∆»«Ќ» ћ≈—я÷ј после прибавлени€ дн€ сумма стала = " + itog); }
+            return itog; // посчитали дни первого Ќ≈ѕќЋЌќ√ќ мес€ца жизни Ћ»Ѕќ ≈ƒ»Ќ—“¬≈ЌЌќ√ќ ¬ ∆»«Ќ» ћ≈—я÷ј
+        }
+
+        static int ziklFromBegin(int one, int two, int three, int four, int five, int six, int itog, int dnei, int konstanta)
+        {
+            for (int i = konstanta + 1; i < five; i++)
+            {
+                Console.WriteLine("ziklFromBegin мес€цы первого года, если год Ќ≈ ≈ƒ»Ќ—“¬≈ЌЌџ…, i = " + i + " sum перед началом этой операции = " + itog);
+                if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { itog += 31; continue; }
+                if (i == 4 || i == 6 || i == 9 || i == 11) { itog += 30; continue; }
+                if (i == 2 && two % 4 == 0) { itog += 29; continue; }
+                if (i == 2) { itog += 28; }
+            }
+            return itog;
+        } // полные мес€цы первого года, если год Ќ≈ ≈ƒ»Ќ—“¬≈ЌЌџ…
+
+        static int yearsFull(int a, int b, int c, int d, int e, int f, int itog, int dnei, int konstanta)
+        {
+            for (int i = c + 1; i < f; i++)
+            {
+                Console.WriteLine("yearsFull , i = " + i + " sum перед началом этой операции = " + itog);
+                if (i % 4 == 0) { itog += 366; continue; }
+                itog += 365;
+                Console.Write(" после sum = " + itog);
+            }
+            return itog;
+        }  // посчитали прожитые ѕќЋЌџ≈ годы
+
+        static int ziklMonthFromEnd(int one, int two, int three, int four, int five, int six, int itog, int dnei, int konstanta)
+        {
+            for (int i = 1; i < five; i++)
+            {
+                Console.WriteLine("ziklMonthFromEnd мес€цы последнего года, если год Ќ≈ ≈ƒ»Ќ—“¬≈ЌЌџ…, i = " + i + " sum перед началом этой операции = " + itog);
+                if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { itog += 31; continue; }
+                if (i == 4 || i == 6 || i == 9 || i == 11) { itog += 30; continue; }
+                if (i == 2 && two % 4 == 0) { itog += 29; continue; }
+                if (i == 2) { itog += 28; }
+            }
+            return itog;
+        }
+
+
+        static int monthFull(int a, int b, int c, int d, int e, int f, int itog, int dnei, int konstanta)
+        {
+            if (c != f)
+            {
+                konstanta = 12;
+                itog = superZiklMensheIliRavno(a, b, c, d, e, f, itog, dnei, konstanta);
+            }
+            else if (c == f)
+            {
+                konstanta = e;
+                itog = superZiklMenshe(a, b, c, d, e, f, itog, dnei, konstanta);
+            }
+            return itog;
+        }  // посчитали прожитые дни за ѕќЋЌџ≈ мес€цы ѕ≈–¬ќ√ќ года , либо ≈ƒ»Ќ—“¬≈ЌЌќ√ќ года
+
+        static int daysFirstOrOnly(int a, int b, int c, int d, int e, int f, int itog, int dnei, int konstanta)
+        {
+            itog = ziklDniPervie(a, b, c, d, e, f, itog, dnei, konstanta);
+            return itog;
+        }  // посчитали прожитые дни за единственный мес€ц единственного года
+
+        static int monthLast(int a, int b, int c, int d, int e, int f, int itog, int dnei, int konstanta)
+        {
+            if (c != f)
+            {
+                konstanta = 1;
+                itog = ziklMonthFromEnd(a, b, c, d, e, f, itog, dnei, konstanta);
+            }
+            return itog;
+        }  // посчитали прожитые полные мес€цы текущего/последнего года (елси он Ќ≈ ≈ƒ»Ќ—“¬≈ЌЌџ…)
+
+        static int daysLast(int a, int b, int c, int d, int e, int f, int itog, int dnei, int konstanta)
+        {
+            {
+                for (int i = 1; i <= d; i++)
+                    if (c == f && b == e) { break; }// не входит в цикл при значении годарождени€ 2020 + не входит в цикл при значении мес€ца “≈ ”ў»… (10)
+                    else
+                    { Console.WriteLine("daysLast прожитые дни текущего/последнего мес€ца (если он Ќ≈ ≈ƒ»Ќ—“¬≈ЌЌџ…), i = " + i + " sum перед началом этой операции = " + itog); itog++; }
+            }
+            return itog;
+        }  // посчитали прожитые дни текущего/последнего мес€ца (если он Ќ≈ ≈ƒ»Ќ—“¬≈ЌЌџ…)
 
         static void Main(string[] args)
         {
@@ -21,7 +138,8 @@ namespace Debut
             Console.WriteLine();
             int caseSwitch = Convert.ToInt32(Console.ReadLine());
             int sum = 0;
-            int dnei = 0;
+            int daysDefault = 0;
+            int konstanta = 0;
 
             switch (caseSwitch)
             {
@@ -34,7 +152,7 @@ namespace Debut
                     {
                         int number = Convert.ToInt32(liveArray[i]);
                         liveArrayNum[i] = number;
-                    }
+                    } // liveArrayNum == создали массив из дд.мм.гггг рождени€
 
                     DateTime dt = DateTime.Now;
                     string curDate = dt.ToShortDateString();
@@ -44,171 +162,54 @@ namespace Debut
                     {
                         int number = Convert.ToInt32(curDateArray[i]);
                         curDateNum[i] = number;
-                    }
+                    } // curDateNum == создали массив из дд.мм.гггг сегодн€шнего дн€ 
 
-                    for (int i = liveArrayNum[2] + 1; i < curDateNum[2]; i++)
-                    {
-                        if (i % 4 == 0) { sum += 366; continue; }
-                        sum += 365;
-                    }  // посчитали все полные года
+                    sum = yearsFull(liveArrayNum[0], liveArrayNum[1], liveArrayNum[2], curDateNum[0], curDateNum[1], curDateNum[2], sum, daysDefault, konstanta); // посчитали прожитые дни за ѕќЋЌџ≈ годы
 
-                    if (liveArrayNum[2] != curDateNum[2])
-                    {
-                        for (int i = liveArrayNum[1] + 1; i <= 12; i++)
-                        {
-                            if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { sum += 31; continue; }
-                            if (i == 4 || i == 6 || i == 9 || i == 11) { sum += 30; continue; }
-                            if (i == 2 && liveArrayNum[2] % 4 == 0) { sum += 29; continue; }
-                            if (i == 2) { sum += 28; }
-                        } // посчитали все мес€цы первого неполного года
+                    sum = monthFull(liveArrayNum[0], liveArrayNum[1], liveArrayNum[2], curDateNum[0], curDateNum[1], curDateNum[2], sum, daysDefault, konstanta); // посчитали прожитые ѕќЋЌџ≈ мес€цы ѕ≈–¬ќ√ќ или ≈ƒ»Ќ—“¬≈ЌЌќ√ќ года
 
-                        if (liveArrayNum[1] == 01 || liveArrayNum[1] == 03 || liveArrayNum[1] == 05 || liveArrayNum[1] == 07 || liveArrayNum[1] == 08 || liveArrayNum[1] == 10 || liveArrayNum[1] == 12) { dnei = 31; }
-                        if (liveArrayNum[1] == 04 || liveArrayNum[1] == 06 || liveArrayNum[1] == 09 || liveArrayNum[1] == 11) { dnei = 30; }
-                        if (liveArrayNum[1] == 02 && liveArrayNum[2] % 4 == 0) { dnei = 29; }
-                        if (liveArrayNum[1] == 2 && liveArrayNum[2] != 0) { dnei = 28; }
-                        for (int i = liveArrayNum[0]; i <= dnei; i++)
-                        {
-                            sum++;
-                        } // посчитали дни первого мес€ца первого неполного года
+                    sum = daysFirstOrOnly(liveArrayNum[0], liveArrayNum[1], liveArrayNum[2], curDateNum[0], curDateNum[1], curDateNum[2], sum, daysDefault, konstanta);
 
+                    sum = monthLast(liveArrayNum[0], liveArrayNum[1], liveArrayNum[2], curDateNum[0], curDateNum[1], curDateNum[2], sum, daysDefault, konstanta);
 
-                        for (int i = 1; i < curDateNum[1]; i++)
-                        {
-                            if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { sum += 31; continue; }
-                            if (i == 4 || i == 6 || i == 9 || i == 11) { sum += 30; continue; }
-                            if (i == 2 && liveArrayNum[2] % 4 == 0) { sum += 29; continue; }
-                            if (i == 2) { sum += 28; }
-                        } // посчитали полные мес€цы текущего неполного года
+                    sum = daysLast(liveArrayNum[0], liveArrayNum[1], liveArrayNum[2], curDateNum[0], curDateNum[1], curDateNum[2], sum, daysDefault, konstanta);
 
-                        for (int i = 1; i < curDateNum[0]; i++)
-                        { sum++; }  // посчитали дни неполного текущего мес€ца
-                    }
-
-                    if (liveArrayNum[2] == curDateNum[2])
-                    {
-                        for (int i = liveArrayNum[1] + 1; i < curDateNum[1]; i++)
-                        {
-                            if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { sum += 31; continue; }
-                            if (i == 4 || i == 6 || i == 9 || i == 11) { sum += 30; continue; }
-                            if (i == 2 && liveArrayNum[2] % 4 == 0) { sum += 29; continue; }
-                            if (i == 2) { sum += 28; }
-                        } // посчитали полные мес€цы текущего года при рождении в этом году
-
-                        for (int i = 1; i < curDateNum[0]; i++)
-                        { sum++; }  // посчитали дни неполного текущего мес€ца
-
-                        if (liveArrayNum[1] == 01 || liveArrayNum[1] == 03 || liveArrayNum[1] == 05 || liveArrayNum[1] == 07 || liveArrayNum[1] == 08 || liveArrayNum[1] == 10 || liveArrayNum[1] == 12) { dnei = 31; }
-                        if (liveArrayNum[1] == 04 || liveArrayNum[1] == 06 || liveArrayNum[1] == 09 || liveArrayNum[1] == 11) { dnei = 30; }
-                        if (liveArrayNum[1] == 02 && liveArrayNum[2] % 4 == 0) { dnei = 29; }
-                        if (liveArrayNum[1] == 2 && liveArrayNum[2] != 0) { dnei = 28; }
-                        for (int i = liveArrayNum[0]; i <= dnei; i++)
-                        {
-                            sum++;
-                        } // посчитали дни первого мес€ца первого неполного года
-
-                    }
-
-                    if (liveArrayNum[1] == curDateNum[1] && liveArrayNum[2] == curDateNum[2])
-                    {
-                        if (curDateNum[1] == 1 || curDateNum[1] == 3 || curDateNum[1] == 5 || curDateNum[1] == 7 || curDateNum[1] == 8 || curDateNum[1] == 10 || curDateNum[1] == 12) { sum -= 31; }
-                        if (curDateNum[1] == 4 || curDateNum[1] == 6 || curDateNum[1] == 9 || curDateNum[1] == 11) { sum -= 30; }
-                        if (curDateNum[1] == 2 && liveArrayNum[2] % 4 == 0) { sum -= 29; }
-                        if (curDateNum[1] == 2) { sum -= 28; }
-                    }
-                    Console.WriteLine("¬ы живЄте на этом свете уже " + sum + " дней, неплохо!");
+                    Console.WriteLine("otvet =  " + sum);
                     break;
-
 
                 case 2:
-                    Console.WriteLine("введите дату рождени€ умершего человека в формате дд.мм.гггг ");
-                    string liveDead = Console.ReadLine();
-                    string[] liveDeadArray = liveDead.Split('.');
-                    int[] liveDeadArrayNum = new int[3];
+                    Console.Write("введите дату рождени€ в формате дд.мм.гггг ");
+                    string live2 = Console.ReadLine();
+                    string[] live2Array = live2.Split('.');
+                    int[] live2ArrayNum = new int[3];
                     for (int i = 0; i < 3; i++)
                     {
-                        int number = Convert.ToInt32(liveDeadArray[i]);
-                        liveDeadArrayNum[i] = number;
-                    }
-                    Console.WriteLine("введите дату смерти умершего человека в формате дд.мм.гггг ");
-                    string deadDead = Console.ReadLine();
-                    string[] deadDeadArray = deadDead.Split('.');
-                    int[] deadDeadArrayNum = new int[3];
+                        int number = Convert.ToInt32(live2Array[i]);
+                        live2ArrayNum[i] = number;
+                    } // liveArrayNum == создали массив из дд.мм.гггг рождени€
+
+                    Console.Write("введите дату смерти в формате дд.мм.гггг ");
+                    string dead = Console.ReadLine();
+                    string[] deadArray = dead.Split('.');
+                    int[] deadArrayNum = new int[3];
                     for (int i = 0; i < 3; i++)
                     {
-                        int number = Convert.ToInt32(deadDeadArray[i]);
-                        deadDeadArrayNum[i] = number;
-                    }
+                        int number = Convert.ToInt32(deadArray[i]);
+                        deadArrayNum[i] = number;
+                    } // liveArrayNum == создали массив из дд.мм.гггг рождени€
 
-                    for (int i = liveDeadArrayNum[2] + 1; i < deadDeadArrayNum[2]; i++)
-                    {
-                        if (i % 4 == 0) { sum += 366; continue; }
-                        sum += 365;
-                    }  // посчитали все полные года
+                    sum = yearsFull(live2ArrayNum[0], live2ArrayNum[1], live2ArrayNum[2], deadArrayNum[0], deadArrayNum[1], deadArrayNum[2], sum, daysDefault, konstanta); // посчитали прожитые дни за ѕќЋЌџ≈ годы
 
-                    if (liveDeadArrayNum[2] != deadDeadArrayNum[2])
-                    {
-                        for (int i = liveDeadArrayNum[1] + 1; i <= 12; i++)
-                        {
-                            if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { sum += 31; continue; }
-                            if (i == 4 || i == 6 || i == 9 || i == 11) { sum += 30; continue; }
-                            if (i == 2 && liveDeadArrayNum[2] % 4 == 0) { sum += 29; continue; }
-                            if (i == 2) { sum += 28; }
-                        } // посчитали все мес€цы первого неполного года
-                        if (liveDeadArrayNum[1] == 01 || liveDeadArrayNum[1] == 03 || liveDeadArrayNum[1] == 05 || liveDeadArrayNum[1] == 07 || liveDeadArrayNum[1] == 08 || liveDeadArrayNum[1] == 10 || liveDeadArrayNum[1] == 12) { dnei = 31; }
-                        if (liveDeadArrayNum[1] == 04 || liveDeadArrayNum[1] == 06 || liveDeadArrayNum[1] == 09 || liveDeadArrayNum[1] == 11) { dnei = 30; }
-                        if (liveDeadArrayNum[1] == 02 && liveDeadArrayNum[2] % 4 == 0) { dnei = 29; }
-                        if (liveDeadArrayNum[1] == 2 && liveDeadArrayNum[2] != 0) { dnei = 28; }
-                        for (int i = liveDeadArrayNum[0]; i <= dnei; i++)
-                        {
-                            sum++;
-                        } // посчитали дни первого мес€ца первого неполного года
+                    sum = monthFull(live2ArrayNum[0], live2ArrayNum[1], live2ArrayNum[2], deadArrayNum[0], deadArrayNum[1], deadArrayNum[2], sum, daysDefault, konstanta); // посчитали прожитые ѕќЋЌџ≈ мес€цы ѕ≈–¬ќ√ќ или ≈ƒ»Ќ—“¬≈ЌЌќ√ќ года
 
-                        for (int i = 1; i < deadDeadArrayNum[1]; i++)
-                        {
-                            if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { sum += 31; continue; }
-                            if (i == 4 || i == 6 || i == 9 || i == 11) { sum += 30; continue; }
-                            if (i == 2 && liveDeadArrayNum[2] % 4 == 0) { sum += 29; continue; }
-                            if (i == 2) { sum += 28; }
-                        } // посчитали полные мес€цы последнего неполного года
+                    sum = daysFirstOrOnly(live2ArrayNum[0], live2ArrayNum[1], live2ArrayNum[2], deadArrayNum[0], deadArrayNum[1], deadArrayNum[2], sum, daysDefault, konstanta);
 
-                        for (int i = 1; i < deadDeadArrayNum[0]; i++)
-                        { sum++; }  // посчитали дни последнего неполного мес€ца
-                    }
+                    sum = monthLast(live2ArrayNum[0], live2ArrayNum[1], live2ArrayNum[2], deadArrayNum[0], deadArrayNum[1], deadArrayNum[2], sum, daysDefault, konstanta);
 
-                    if (liveDeadArrayNum[2] == deadDeadArrayNum[2])
-                    {
-                        for (int i = liveDeadArrayNum[1] + 1; i < deadDeadArrayNum[1]; i++)
-                        {
-                            if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { sum += 31; continue; }
-                            if (i == 4 || i == 6 || i == 9 || i == 11) { sum += 30; continue; }
-                            if (i == 2 && liveDeadArrayNum[2] % 4 == 0) { sum += 29; continue; }
-                            if (i == 2) { sum += 28; }
-                        } // посчитали полные мес€цы единственного года в жизни
-                        for (int i = 1; i < deadDeadArrayNum[0]; i++)
-                        { sum++; }  // посчитали дни неполного последнего мес€ца жизни
-                        if (liveDeadArrayNum[1] == 01 || liveDeadArrayNum[1] == 03 || liveDeadArrayNum[1] == 05 || liveDeadArrayNum[1] == 07 || liveDeadArrayNum[1] == 08 || liveDeadArrayNum[1] == 10 || liveDeadArrayNum[1] == 12) { dnei = 31; }
-                        if (liveDeadArrayNum[1] == 04 || liveDeadArrayNum[1] == 06 || liveDeadArrayNum[1] == 09 || liveDeadArrayNum[1] == 11) { dnei = 30; }
-                        if (liveDeadArrayNum[1] == 02 && liveDeadArrayNum[2] % 4 == 0) { dnei = 29; }
-                        if (liveDeadArrayNum[1] == 2 && liveDeadArrayNum[2] != 0) { dnei = 28; }
-                        for (int i = liveDeadArrayNum[0]; i <= dnei; i++)
-                        {
-                            sum++;
-                        } // посчитали дни первого мес€ца первого неполного года
+                    sum = daysLast(live2ArrayNum[0], live2ArrayNum[1], live2ArrayNum[2], deadArrayNum[0], deadArrayNum[1], deadArrayNum[2], sum, daysDefault, konstanta);
 
-                    }
-
-                    if (liveDeadArrayNum[1] == deadDeadArrayNum[1] && liveDeadArrayNum[2] == deadDeadArrayNum[2])
-                    {
-                        if (deadDeadArrayNum[1] == 1 || deadDeadArrayNum[1] == 3 || deadDeadArrayNum[1] == 5 || deadDeadArrayNum[1] == 7 || deadDeadArrayNum[1] == 8 || deadDeadArrayNum[1] == 10 || deadDeadArrayNum[1] == 12) { sum -= 31; }
-                        if (deadDeadArrayNum[1] == 4 || deadDeadArrayNum[1] == 6 || deadDeadArrayNum[1] == 9 || deadDeadArrayNum[1] == 11) { sum -= 30; }
-                        if (deadDeadArrayNum[1] == 2 && deadDeadArrayNum[2] % 4 == 0) { sum -= 29; }
-                        if (deadDeadArrayNum[1] == 2) { sum -= 28; }
-                    }
-
-
-                    Console.WriteLine("ѕрожить под небом " + sum + " дней тоже неплохо! ¬ечна€ пам€ть!");
+                    Console.WriteLine("otvet =  " + sum);
                     break;
-
             }
 
 
