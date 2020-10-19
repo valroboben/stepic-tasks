@@ -1,223 +1,328 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Debut
+namespace livedead
 {
     class Program
     {
-        // a-b-c дд.мм.гг рождения     d-e-f дд.мм.гг текущий ИЛИ смерти       dnei всегда изначально == 0
-        static int superZiklMensheIliRavno(int one, int two, int three, int four, int five, int six, int itog, int dnei, int konstanta)
-        {
-            for (int i = two + 1; i <= konstanta; i++)
-            {
-                Console.WriteLine("superZiklMensheIliRavno месяцы первого неполного года ЕСЛИ ГОД РОЖЕНИЯ НЕ ТЕКУЩИЙ или НЕ РАВЕН ГОДУ СМЕРТИ, i = " + i + " sum перед началом этой операции = " + itog);
-                if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { itog += 31; Console.Write(" после sum = " + itog); continue; }
-                if (i == 4 || i == 6 || i == 9 || i == 11) { itog += 30; Console.Write(" после sum = " + itog); continue; }
-                if (i == 2 && three % 4 == 0) { itog += 29; Console.WriteLine(" после sum = " + itog); continue; }
-                if (i == 2) { itog += 28; Console.Write(" после sum = " + itog); }
-            }
-            return itog;
-        }   // посчитали все месяцы первого неполного года ЕСЛИ ГОД РОЖЕНИЯ НЕ ТЕКУЩИЙ или НЕ РАВЕН ГОДУ СМЕРТИ
 
-        static int superZiklMenshe(int one, int two, int three, int four, int five, int six, int itog, int dnei, int konstanta)
+        static int findDaysInMonth(int i, int daysInMonth, int maybeVisokosnyGod)
         {
-            for (int i = two + 1; i < five; i++)
-            {
-                Console.WriteLine("superZiklMenshe месяцы неполного года ЕСЛИ ГОД РОЖЕНИЯ ТЕКУЩИЙ или РАВЕН ГОДУ СМЕРТИ, i = " + i + " sum перед началом этой операции = " + itog);
-                if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { itog += 31; continue; }
-                if (i == 4 || i == 6 || i == 9 || i == 11) { itog += 30; continue; }
-                if (i == 2 && two % 4 == 0) { itog += 29; continue; }
-                if (i == 2) { itog += 28; }
-            }
-            return itog;
-        }   // посчитали все месяцы неполного года ЕСЛИ ГОД РОЖЕНИЯ ТЕКУЩИЙ или РАВЕН ГОДУ СМЕРТИ
-
-        static int ziklDniPervie(int one, int two, int three, int four, int five, int six, int itog, int dnei, int konstanta)
-        {
-            if (two == 1 || two == 3 || two == 5 || two == 7 || two == 8 || two == 10 || two == 12) { konstanta = 31; }
-            if (two == 4 || two == 6 || two == 9 || two == 11) { konstanta = 30; }
-            if (two == 2) { konstanta = 28; }
-            if (two == 2 && three % 4 == 0) { konstanta = 29; }
-            if (two == five && three == six) { konstanta = four; }
-
-            for (int i = one; i <= konstanta; i++)
-            { itog++; Console.WriteLine("daysFirstOrOnly дни первого НЕПОЛНОГО месяца жизни ЛИБО ЕДИНСТВЕННОГО В ЖИЗНИ МЕСЯЦА после прибавления дня сумма стала = " + itog); }
-            return itog; // посчитали дни первого НЕПОЛНОГО месяца жизни ЛИБО ЕДИНСТВЕННОГО В ЖИЗНИ МЕСЯЦА
+            if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { daysInMonth = 31; }
+            if (i == 4 || i == 6 || i == 9 || i == 11) { daysInMonth = 30;  }
+            if (i == 2 && maybeVisokosnyGod % 4 != 0) { daysInMonth = 28; }
+            if (i == 2 && maybeVisokosnyGod % 4 == 0) { daysInMonth = 29; }
+            return daysInMonth;
         }
 
-        static int ziklFromBegin(int one, int two, int three, int four, int five, int six, int itog, int dnei, int konstanta)
+        static bool caseSwitchCheck(string caseSwitchInput)
         {
-            for (int i = konstanta + 1; i < five; i++)
-            {
-                Console.WriteLine("ziklFromBegin месяцы первого года, если год НЕ ЕДИНСТВЕННЫЙ, i = " + i + " sum перед началом этой операции = " + itog);
-                if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { itog += 31; continue; }
-                if (i == 4 || i == 6 || i == 9 || i == 11) { itog += 30; continue; }
-                if (i == 2 && two % 4 == 0) { itog += 29; continue; }
-                if (i == 2) { itog += 28; }
-            }
-            return itog;
-        } // полные месяцы первого года, если год НЕ ЕДИНСТВЕННЫЙ
+            bool caseSwitchCheck = false;
+            int caseSwitchCheckLength = caseSwitchInput.Length;
+            if (caseSwitchCheckLength > 1) { Console.WriteLine("Your input is too long, start again");  caseSwitchCheck = true; }
 
-        static int yearsFull(int a, int b, int c, int d, int e, int f, int itog, int dnei, int konstanta)
-        {
-            for (int i = c + 1; i < f; i++)
+            char[] caseSwitchInputArray = caseSwitchInput.ToCharArray();
+            for (int i = 0; i < caseSwitchCheckLength; i++)
             {
-                Console.WriteLine("yearsFull , i = " + i + " sum перед началом этой операции = " + itog);
-                if (i % 4 == 0) { itog += 366; continue; }
-                itog += 365;
-                Console.Write(" после sum = " + itog);
+                if ((int)caseSwitchInputArray[i] < 49 || (int)caseSwitchInputArray[i] > 50)
+                {
+                    Console.WriteLine("You can input only figures - 1 or 2. Please input again");
+                    caseSwitchCheck = true;
+                    break;
+                }
             }
-            return itog;
-        }  // посчитали прожитые ПОЛНЫЕ годы
-
-        static int ziklMonthFromEnd(int one, int two, int three, int four, int five, int six, int itog, int dnei, int konstanta)
-        {
-            for (int i = 1; i < five; i++)
-            {
-                Console.WriteLine("ziklMonthFromEnd месяцы последнего года, если год НЕ ЕДИНСТВЕННЫЙ, i = " + i + " sum перед началом этой операции = " + itog);
-                if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) { itog += 31; continue; }
-                if (i == 4 || i == 6 || i == 9 || i == 11) { itog += 30; continue; }
-                if (i == 2 && two % 4 == 0) { itog += 29; continue; }
-                if (i == 2) { itog += 28; }
-            }
-            return itog;
+            return caseSwitchCheck;
         }
 
-
-        static int monthFull(int a, int b, int c, int d, int e, int f, int itog, int dnei, int konstanta)
+        static bool dateInputCheck(string someDateString)
         {
-            if (c != f)
+            bool dateInputCheck = false;
+            int counter = 0;
+            int someDateStringLength = someDateString.Length;
+            if (someDateStringLength < 5) { Console.WriteLine("The date you have inpus is TOO short, please, try again!"); dateInputCheck = true; goto EndDateInputCheck; }
+
+            char[] someDateCharArray = someDateString.ToCharArray();
+            for (int i = 0; i < someDateStringLength; i++)
             {
-                konstanta = 12;
-                itog = superZiklMensheIliRavno(a, b, c, d, e, f, itog, dnei, konstanta);
+                if ((int)someDateCharArray[0] == 46)
+                {
+                    Console.WriteLine("A date must not start with a DOT !");
+                    dateInputCheck = true; goto EndDateInputCheck;
+                }
+                if ((int)someDateCharArray[i] < 46 || (int)someDateCharArray[i] == 47 || (int)someDateCharArray[i] > 57)
+                {
+                    Console.WriteLine("You must input only numbers and dots in format: dd.mm.yyyy ! Only A.D. dates are accepted. Please input again");
+                    dateInputCheck = true; goto EndDateInputCheck;
+                }
+                if ((int)someDateCharArray[i] == 46 && (int)someDateCharArray[i - 1] == 46)
+                {
+                    Console.WriteLine("There mustn't be to DOTS in a row!");
+                    dateInputCheck = true; goto EndDateInputCheck;
+                }
+                if ((int)someDateCharArray[i] == 46) { counter++; }
             }
-            else if (c == f)
+            if (counter != 2)
             {
-                konstanta = e;
-                itog = superZiklMenshe(a, b, c, d, e, f, itog, dnei, konstanta);
+                Console.WriteLine("But there MUST be two dots to make dd.mm.yyyy format !!! ");
+                dateInputCheck = true; goto EndDateInputCheck;
             }
-            return itog;
-        }  // посчитали прожитые дни за ПОЛНЫЕ месяцы ПЕРВОГО года , либо ЕДИНСТВЕННОГО года
-
-        static int daysFirstOrOnly(int a, int b, int c, int d, int e, int f, int itog, int dnei, int konstanta)
-        {
-            itog = ziklDniPervie(a, b, c, d, e, f, itog, dnei, konstanta);
-            return itog;
-        }  // посчитали прожитые дни за единственный месяц единственного года
-
-        static int monthLast(int a, int b, int c, int d, int e, int f, int itog, int dnei, int konstanta)
-        {
-            if (c != f)
+            if ((int)someDateCharArray[someDateStringLength - 1] == 46)
             {
-                konstanta = 1;
-                itog = ziklMonthFromEnd(a, b, c, d, e, f, itog, dnei, konstanta);
+                Console.WriteLine("The date mustn't end with a DOT !");
+                dateInputCheck = true; goto EndDateInputCheck;
             }
-            return itog;
-        }  // посчитали прожитые полные месяцы текущего/последнего года (елси он НЕ ЕДИНСТВЕННЫЙ)
 
-        static int daysLast(int a, int b, int c, int d, int e, int f, int itog, int dnei, int konstanta)
+            string[] someDateDDMMYYYYArray = someDateString.Split('.');
+            int[] someDateDDMMYYYYNumericArray = new int[3];
+            for (int i = 0; i < 3; i++)
+            {
+                int number = Convert.ToInt32(someDateDDMMYYYYArray[i]);
+                someDateDDMMYYYYNumericArray[i] = number;
+            } // created dd.mm.yyyy array for input date
+
+            DateTime dt = DateTime.Now;
+            string currentDateDDMMYYYCheck = dt.ToShortDateString();
+            string[] currentDateDDMMYYYYArray = currentDateDDMMYYYCheck.Split('.');
+            int[] currentDateDDMMYYYYNumericArray = new int[3];
+            for (int i = 0; i < 3; i++)
+            {
+                int number = Convert.ToInt32(currentDateDDMMYYYYArray[i]);
+                currentDateDDMMYYYYNumericArray[i] = number;
+            } // created dd.mm.yyyy array for current date
+
+            if (currentDateDDMMYYYYNumericArray[2] < someDateDDMMYYYYNumericArray[2])
+            {
+                Console.WriteLine("Year of input date is AFTER the current date? Please input again");
+                dateInputCheck = true; goto EndDateInputCheck;
+            }
+            if (currentDateDDMMYYYYNumericArray[2] == someDateDDMMYYYYNumericArray[2] && currentDateDDMMYYYYNumericArray[1] < someDateDDMMYYYYNumericArray[1])
+            {
+                Console.WriteLine("Month of input date is AFTER the current date? Please input again");
+                dateInputCheck = true; goto EndDateInputCheck;
+            }
+            if (currentDateDDMMYYYYNumericArray[2] == someDateDDMMYYYYNumericArray[2] && currentDateDDMMYYYYNumericArray[1] == someDateDDMMYYYYNumericArray[1] && currentDateDDMMYYYYNumericArray[0] < someDateDDMMYYYYNumericArray[0])
+            {
+                Console.WriteLine("Day of input date is AFTER the current date? Please input again");
+                dateInputCheck = true; goto EndDateInputCheck;
+            }
+            if (someDateDDMMYYYYNumericArray[1] > 12)
+            {
+                Console.WriteLine("There can not be a month number " + someDateDDMMYYYYNumericArray[1] + " ! Please input again");
+                dateInputCheck = true; goto EndDateInputCheck;
+            }
+            int maybeDDIsMoreThanDaysInMonth = findDaysInMonth(someDateDDMMYYYYNumericArray[1], 0, someDateDDMMYYYYNumericArray[2]);
+            if (someDateDDMMYYYYNumericArray[0] > maybeDDIsMoreThanDaysInMonth)
+            {
+                Console.WriteLine("there are only " + maybeDDIsMoreThanDaysInMonth + " days in month " + someDateDDMMYYYYNumericArray[1] + " in year " + someDateDDMMYYYYNumericArray[2] + " ! Please input again");
+                dateInputCheck = true; goto EndDateInputCheck;
+            }
+        EndDateInputCheck:
+            return dateInputCheck;
+        } // we've checked the input format dd.mm.yyyy
+
+
+        static int yearsFull(int ddBirth, int mmBirth, int yyyyBirth, int ddLast, int mmLast, int yyyyLast, int daysOfLife, int peremennaya)
+        {
+            for (int i = yyyyBirth + 1; i < yyyyLast; i++)
+            {
+                if (i % 4 == 0) { daysOfLife += 366; continue; }
+                daysOfLife += 365;
+            }
+            return daysOfLife;
+        }  // counts FULL YEARS that were lived
+
+    static int monthFullFirstOrOnly(int ddBirth, int mmBirth, int yyyyBirth, int ddLast, int mmLast, int yyyyLast, int daysOfLife, int peremennaya)
+        {
+            if (yyyyBirth != yyyyLast)
+            {
+                for (int i = mmBirth + 1; i <= 12; i++)
+                {
+                int daysInMonth = findDaysInMonth(i, 0, yyyyBirth);
+                daysOfLife += daysInMonth;
+             //   Console.WriteLine("first year full months!  i = " + i + " itog = " + daysOfLife);
+                }
+            }
+            else if (yyyyBirth == yyyyLast)
+            {
+                for (int i = mmBirth + 1; i < mmLast; i++)
+                {
+                    int daysInMonth = findDaysInMonth(i, 0, yyyyBirth);
+                    daysOfLife += daysInMonth;
+                 //   Console.WriteLine("ONLY year full months! i = " + i + " itog = " + daysOfLife);
+                }
+            }
+            return daysOfLife;
+        }  // counts days of FULL MONTHS of the 1-st or THE ONLY life year
+
+        static int daysFirstOrOnlyMonth(int ddBirth, int mmBirth, int yyyyBirth, int ddLast, int mmLast, int yyyyLast, int daysOfLife, int peremennaya)
+        {
+            if (mmBirth == 1 || mmBirth == 3 || mmBirth == 5 || mmBirth == 7 || mmBirth == 8 || mmBirth == 10 || mmBirth == 12) { peremennaya = 31; }
+            if (mmBirth == 4 || mmBirth == 6 || mmBirth == 9 || mmBirth == 11) { peremennaya = 30; }
+            if (mmBirth == 2) { peremennaya = 28; }
+            if (mmBirth == 2 && yyyyBirth % 4 == 0) { peremennaya = 29; }
+            if (mmBirth == mmLast && yyyyBirth == yyyyLast) { peremennaya = ddLast; }
+            for (int i = ddBirth; i <= peremennaya; i++)
+            {
+                daysOfLife++;
+             //   Console.WriteLine("plus day first month!");
+            }
+            return daysOfLife; 
+        }  // counts days of the first NOT FULL month in life OR of the ONLY MONTH in one's life
+
+        static int monthFullLastYear(int ddBirth, int mmBirth, int yyyyBirth, int ddLast, int mmLast, int yyyyLast, int daysOfLife, int peremennaya)
+        {
+            if (yyyyBirth != yyyyLast)
+            {
+                for (int i = 1; i < mmLast; i++)
+                {
+                    int daysInMonth = findDaysInMonth(i, 0, yyyyLast);
+                    daysOfLife += daysInMonth;
+                 //   Console.WriteLine("last months! i = " + i + " itog = " + daysOfLife);
+                }
+            }
+            return daysOfLife;
+        }  // counts FULL MONTHS of the LAST YEAR (if it is NOT THE ONLY YEAR in life)
+
+        static int daysLastMonthLastYear(int ddBirth, int mmBirth, int yyyyBirth, int ddLast, int mmLast, int yyyyLast, int daysOfLife, int peremennaya)
         {
             {
-                for (int i = 1; i <= d; i++)
-                    if (c == f && b == e) { break; }// не входит в цикл при значении годарождения 2020 + не входит в цикл при значении месяца ТЕКУЩИЙ (10)
+                for (int i = 1; i <= ddLast; i++)
+                    if (yyyyBirth == yyyyLast && mmBirth == mmLast) { break; }// РЅРµ РІС…РѕРґРёС‚ РІ С†РёРєР» РїСЂРё Р·РЅР°С‡РµРЅРёРё РіРѕРґР°СЂРѕР¶РґРµРЅРёСЏ 2020 + РЅРµ РІС…РѕРґРёС‚ РІ С†РёРєР» РїСЂРё Р·РЅР°С‡РµРЅРёРё РјРµСЃСЏС†Р° РўР•РљРЈР©РР™ (10)
                     else
-                    { Console.WriteLine("daysLast прожитые дни текущего/последнего месяца (если он НЕ ЕДИНСТВЕННЫЙ), i = " + i + " sum перед началом этой операции = " + itog); itog++; }
+                   { daysOfLife++; }
             }
-            return itog;
-        }  // посчитали прожитые дни текущего/последнего месяца (если он НЕ ЕДИНСТВЕННЫЙ)
+            return daysOfLife;
+        }  // counts days of the last NOT FULL month (if it is NOT THE ONLY in life)
+
+        static bool birthAndDeathCheck(int ddBirth, int mmBirth, int yyyyBirth, int ddLast, int mmLast, int yyyyLast)
+        {
+            bool deadBeforeBirth = false;
+            if (yyyyLast < yyyyBirth)
+            { Console.WriteLine("death YEAR is earlier than birth year? input death date again!"); deadBeforeBirth = true; goto EndBirthAndDeathCheck;  }
+            if (yyyyLast == yyyyBirth && mmLast < mmBirth)
+            { Console.WriteLine("death MONTH is earlier than birth month? input death date again!"); deadBeforeBirth = true; goto EndBirthAndDeathCheck; }
+            if (yyyyLast == yyyyBirth && mmLast == mmBirth && ddLast < ddBirth)
+            { Console.WriteLine("death DAY is earlier than birth day? input death date again!"); deadBeforeBirth = true; }
+
+        EndBirthAndDeathCheck:
+            return deadBeforeBirth;
+        }
+
+
 
         static void Main(string[] args)
         {
 
-            Console.Write("Если Вы хотите посчитать количество дней жизни живущего сегодня, нажмите 1 ");
-            Console.WriteLine();
-            Console.Write("Если Вы хотите посчитать количество дней жизни уже мёртвого, нажмите 2 ");
-            Console.WriteLine();
-            int caseSwitch = Convert.ToInt32(Console.ReadLine());
-            int sum = 0;
-            int daysDefault = 0;
-            int konstanta = 0;
 
-            switch (caseSwitch)
+        Begin:
+            int daysOfLife = 0;
+            bool thereIsAnError = false;
+            Console.Write("If you want to count life days of a living person, input 1 "); Console.WriteLine();
+            Console.Write("If you want to count life days of a dead person, input 2 "); Console.WriteLine();
+            string caseSwitchInput = Console.ReadLine();
+            if (String.IsNullOrWhiteSpace(caseSwitchInput))
+            { Console.WriteLine("You have input an empty line. Let's start again from the very beginning!"); goto Begin; }
+
+            thereIsAnError = caseSwitchCheck(caseSwitchInput);
+            if (thereIsAnError == true) { goto Begin; }
+
+            int caseSwitchInputNumber = Convert.ToInt32(caseSwitchInput);
+
+            switch (caseSwitchInputNumber)
             {
+
                 case 1:
-                    Console.Write("введите дату рождения в формате дд.мм.гггг ");
-                    string live = Console.ReadLine();
-                    string[] liveArray = live.Split('.');
-                    int[] liveArrayNum = new int[3];
+                    Console.Write("Input birth date in format dd.mm.yyyy ");
+                    string birthDateString = Console.ReadLine();
+                    if (String.IsNullOrWhiteSpace(birthDateString))
+                    { Console.WriteLine("You have input an empty line. Input birth date again!"); goto case 1; }
+
+                    thereIsAnError = dateInputCheck(birthDateString);
+                    if (thereIsAnError == true) { goto case 1; }
+
+                    string[] birthDateDDMMYYYYArray = birthDateString.Split('.');
+                    int[] birthDateDDMMYYYYNumericArray = new int[3];
                     for (int i = 0; i < 3; i++)
                     {
-                        int number = Convert.ToInt32(liveArray[i]);
-                        liveArrayNum[i] = number;
-                    } // liveArrayNum == создали массив из дд.мм.гггг рождения
+                        int number = Convert.ToInt32(birthDateDDMMYYYYArray[i]);
+                        birthDateDDMMYYYYNumericArray[i] = number;
+                    } // created dd.mm.yyyy array for input date
 
                     DateTime dt = DateTime.Now;
-                    string curDate = dt.ToShortDateString();
-                    string[] curDateArray = curDate.Split('.');
-                    int[] curDateNum = new int[3];
+                    string currentDateDDMMYYYCheck = dt.ToShortDateString();
+                    string[] currentDateDDMMYYYYArray = currentDateDDMMYYYCheck.Split('.');
+                    int[] currentDateDDMMYYYYNumericArray = new int[3];
                     for (int i = 0; i < 3; i++)
                     {
-                        int number = Convert.ToInt32(curDateArray[i]);
-                        curDateNum[i] = number;
-                    } // curDateNum == создали массив из дд.мм.гггг сегодняшнего дня 
+                        int number = Convert.ToInt32(currentDateDDMMYYYYArray[i]);
+                        currentDateDDMMYYYYNumericArray[i] = number;
+                    } // created dd.mm.yyyy array for current date
 
-                    sum = yearsFull(liveArrayNum[0], liveArrayNum[1], liveArrayNum[2], curDateNum[0], curDateNum[1], curDateNum[2], sum, daysDefault, konstanta); // посчитали прожитые дни за ПОЛНЫЕ годы
+                    daysOfLife = yearsFull(birthDateDDMMYYYYNumericArray[0], birthDateDDMMYYYYNumericArray[1], birthDateDDMMYYYYNumericArray[2], currentDateDDMMYYYYNumericArray[0], currentDateDDMMYYYYNumericArray[1], currentDateDDMMYYYYNumericArray[2], daysOfLife, 0);
+                    daysOfLife = monthFullFirstOrOnly(birthDateDDMMYYYYNumericArray[0], birthDateDDMMYYYYNumericArray[1], birthDateDDMMYYYYNumericArray[2], currentDateDDMMYYYYNumericArray[0], currentDateDDMMYYYYNumericArray[1], currentDateDDMMYYYYNumericArray[2], daysOfLife, 0); // РїРѕСЃС‡РёС‚Р°Р»Рё РїСЂРѕР¶РёС‚С‹Рµ РџРћР›РќР«Р• РјРµСЃСЏС†С‹ РџР•Р Р’РћР“Рћ РёР»Рё Р•Р”РРќРЎРўР’Р•РќРќРћР“Рћ РіРѕРґР°
+                    daysOfLife = daysFirstOrOnlyMonth(birthDateDDMMYYYYNumericArray[0], birthDateDDMMYYYYNumericArray[1], birthDateDDMMYYYYNumericArray[2], currentDateDDMMYYYYNumericArray[0], currentDateDDMMYYYYNumericArray[1], currentDateDDMMYYYYNumericArray[2], daysOfLife, 0);
+                    daysOfLife = monthFullLastYear(birthDateDDMMYYYYNumericArray[0], birthDateDDMMYYYYNumericArray[1], birthDateDDMMYYYYNumericArray[2], currentDateDDMMYYYYNumericArray[0], currentDateDDMMYYYYNumericArray[1], currentDateDDMMYYYYNumericArray[2], daysOfLife, 0);
+                    daysOfLife = daysLastMonthLastYear(birthDateDDMMYYYYNumericArray[0], birthDateDDMMYYYYNumericArray[1], birthDateDDMMYYYYNumericArray[2], currentDateDDMMYYYYNumericArray[0], currentDateDDMMYYYYNumericArray[1], currentDateDDMMYYYYNumericArray[2], daysOfLife, 0);
 
-                    sum = monthFull(liveArrayNum[0], liveArrayNum[1], liveArrayNum[2], curDateNum[0], curDateNum[1], curDateNum[2], sum, daysDefault, konstanta); // посчитали прожитые ПОЛНЫЕ месяцы ПЕРВОГО или ЕДИНСТВЕННОГО года
-
-                    sum = daysFirstOrOnly(liveArrayNum[0], liveArrayNum[1], liveArrayNum[2], curDateNum[0], curDateNum[1], curDateNum[2], sum, daysDefault, konstanta);
-
-                    sum = monthLast(liveArrayNum[0], liveArrayNum[1], liveArrayNum[2], curDateNum[0], curDateNum[1], curDateNum[2], sum, daysDefault, konstanta);
-
-                    sum = daysLast(liveArrayNum[0], liveArrayNum[1], liveArrayNum[2], curDateNum[0], curDateNum[1], curDateNum[2], sum, daysDefault, konstanta);
-
-                    Console.WriteLine("otvet =  " + sum);
+                    Console.WriteLine("from " + birthDateString + " to " + currentDateDDMMYYYCheck + " it is " + daysOfLife + " days of life");
                     break;
 
                 case 2:
-                    Console.Write("введите дату рождения в формате дд.мм.гггг ");
-                    string live2 = Console.ReadLine();
-                    string[] live2Array = live2.Split('.');
-                    int[] live2ArrayNum = new int[3];
+                    Console.Write("Input birth date in format dd.mm.yyyy ");
+                    birthDateString = Console.ReadLine();
+                    if (String.IsNullOrWhiteSpace(birthDateString))
+                    { Console.WriteLine("You have input an empty line. Input birth date again!"); goto case 2; }
+
+                    thereIsAnError = dateInputCheck(birthDateString);
+                    if (thereIsAnError == true) { goto case 2; }
+
+                    birthDateDDMMYYYYArray = birthDateString.Split('.');
+                    birthDateDDMMYYYYNumericArray = new int[3];
                     for (int i = 0; i < 3; i++)
                     {
-                        int number = Convert.ToInt32(live2Array[i]);
-                        live2ArrayNum[i] = number;
-                    } // liveArrayNum == создали массив из дд.мм.гггг рождения
+                        int number = Convert.ToInt32(birthDateDDMMYYYYArray[i]);
+                        birthDateDDMMYYYYNumericArray[i] = number;
+                    } // created dd.mm.yyyy array for input date
 
-                    Console.Write("введите дату смерти в формате дд.мм.гггг ");
-                    string dead = Console.ReadLine();
-                    string[] deadArray = dead.Split('.');
-                    int[] deadArrayNum = new int[3];
+                    InputDeathDate:
+                    Console.Write("Input death date in format dd.mm.yyyy ");
+                    string deathDateString = Console.ReadLine();
+                    if (String.IsNullOrWhiteSpace(deathDateString))
+                    { Console.WriteLine("You have input an empty line. Input death date again!"); goto InputDeathDate; }
+
+                    thereIsAnError = dateInputCheck(deathDateString);
+                    if (thereIsAnError == true) { goto InputDeathDate; }
+
+                    string[] deathDateDDMMYYYYArray = deathDateString.Split('.');
+                    int[] deathDateDDMMYYYYNumericArray = new int[3];
                     for (int i = 0; i < 3; i++)
                     {
-                        int number = Convert.ToInt32(deadArray[i]);
-                        deadArrayNum[i] = number;
-                    } // liveArrayNum == создали массив из дд.мм.гггг рождения
+                        int number = Convert.ToInt32(deathDateDDMMYYYYArray[i]);
+                        deathDateDDMMYYYYNumericArray[i] = number;
+                    } // created dd.mm.yyyy array for input death date
 
-                    sum = yearsFull(live2ArrayNum[0], live2ArrayNum[1], live2ArrayNum[2], deadArrayNum[0], deadArrayNum[1], deadArrayNum[2], sum, daysDefault, konstanta); // посчитали прожитые дни за ПОЛНЫЕ годы
+                    bool deadBeforeBirth = birthAndDeathCheck(birthDateDDMMYYYYNumericArray[0], birthDateDDMMYYYYNumericArray[1], birthDateDDMMYYYYNumericArray[2], deathDateDDMMYYYYNumericArray[0], deathDateDDMMYYYYNumericArray[1], deathDateDDMMYYYYNumericArray[2]);
+                    if (deadBeforeBirth == true) { goto InputDeathDate; }
 
-                    sum = monthFull(live2ArrayNum[0], live2ArrayNum[1], live2ArrayNum[2], deadArrayNum[0], deadArrayNum[1], deadArrayNum[2], sum, daysDefault, konstanta); // посчитали прожитые ПОЛНЫЕ месяцы ПЕРВОГО или ЕДИНСТВЕННОГО года
+                    daysOfLife = yearsFull(birthDateDDMMYYYYNumericArray[0], birthDateDDMMYYYYNumericArray[1], birthDateDDMMYYYYNumericArray[2], deathDateDDMMYYYYNumericArray[0], deathDateDDMMYYYYNumericArray[1], deathDateDDMMYYYYNumericArray[2], daysOfLife, 0);
+                    daysOfLife = monthFullFirstOrOnly(birthDateDDMMYYYYNumericArray[0], birthDateDDMMYYYYNumericArray[1], birthDateDDMMYYYYNumericArray[2], deathDateDDMMYYYYNumericArray[0], deathDateDDMMYYYYNumericArray[1], deathDateDDMMYYYYNumericArray[2], daysOfLife, 0); // РїРѕСЃС‡РёС‚Р°Р»Рё РїСЂРѕР¶РёС‚С‹Рµ РџРћР›РќР«Р• РјРµСЃСЏС†С‹ РџР•Р Р’РћР“Рћ РёР»Рё Р•Р”РРќРЎРўР’Р•РќРќРћР“Рћ РіРѕРґР°
+                    daysOfLife = daysFirstOrOnlyMonth(birthDateDDMMYYYYNumericArray[0], birthDateDDMMYYYYNumericArray[1], birthDateDDMMYYYYNumericArray[2], deathDateDDMMYYYYNumericArray[0], deathDateDDMMYYYYNumericArray[1], deathDateDDMMYYYYNumericArray[2], daysOfLife, 0);
+                    daysOfLife = monthFullLastYear(birthDateDDMMYYYYNumericArray[0], birthDateDDMMYYYYNumericArray[1], birthDateDDMMYYYYNumericArray[2], deathDateDDMMYYYYNumericArray[0], deathDateDDMMYYYYNumericArray[1], deathDateDDMMYYYYNumericArray[2], daysOfLife, 0);
+                    daysOfLife = daysLastMonthLastYear(birthDateDDMMYYYYNumericArray[0], birthDateDDMMYYYYNumericArray[1], birthDateDDMMYYYYNumericArray[2], deathDateDDMMYYYYNumericArray[0], deathDateDDMMYYYYNumericArray[1], deathDateDDMMYYYYNumericArray[2], daysOfLife, 0);
 
-                    sum = daysFirstOrOnly(live2ArrayNum[0], live2ArrayNum[1], live2ArrayNum[2], deadArrayNum[0], deadArrayNum[1], deadArrayNum[2], sum, daysDefault, konstanta);
+                    Console.WriteLine("from " + birthDateString + " to " + deathDateString + " it is " + daysOfLife + " days of life");
 
-                    sum = monthLast(live2ArrayNum[0], live2ArrayNum[1], live2ArrayNum[2], deadArrayNum[0], deadArrayNum[1], deadArrayNum[2], sum, daysDefault, konstanta);
-
-                    sum = daysLast(live2ArrayNum[0], live2ArrayNum[1], live2ArrayNum[2], deadArrayNum[0], deadArrayNum[1], deadArrayNum[2], sum, daysDefault, konstanta);
-
-                    Console.WriteLine("otvet =  " + sum);
                     break;
             }
 
-
-
-
-
-
-
+            Console.WriteLine("want to try again? input 8 an press enter!");
+            Console.WriteLine("If you want the programm to be closed - input anything but 8.");
+            string input = Console.ReadLine();
+            if (input == "8") { goto Begin; }
+            else Console.WriteLine("have a good day, bye!");
 
 
         }
