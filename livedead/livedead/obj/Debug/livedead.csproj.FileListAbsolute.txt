@@ -1,0 +1,7 @@
+F:\my_projects\stepic-tasks\livedead\livedead\livedead\obj\Debug\livedead.csprojAssemblyReference.cache
+F:\my_projects\stepic-tasks\livedead\livedead\livedead\obj\Debug\livedead.csproj.CoreCompileInputs.cache
+F:\my_projects\stepic-tasks\livedead\livedead\livedead\bin\Debug\livedead.exe.config
+F:\my_projects\stepic-tasks\livedead\livedead\livedead\bin\Debug\livedead.exe
+F:\my_projects\stepic-tasks\livedead\livedead\livedead\bin\Debug\livedead.pdb
+F:\my_projects\stepic-tasks\livedead\livedead\livedead\obj\Debug\livedead.exe
+F:\my_projects\stepic-tasks\livedead\livedead\livedead\obj\Debug\livedead.pdb
